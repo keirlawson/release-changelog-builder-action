@@ -190,7 +190,8 @@ export class GithubRepository extends BaseRepository {
     // load octokit instance
     this.octokit = new Octokit({
       auth: `token ${this.token}`,
-      baseUrl: this.url
+      baseUrl: this.url,
+      log: console
     })
     if (this.proxy) {
       const agent = new HttpsProxyAgent(this.proxy)
