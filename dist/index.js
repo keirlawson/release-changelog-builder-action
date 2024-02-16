@@ -279,6 +279,7 @@ class Commits {
                 diffInfo = yield commitsApi.getDiff(owner, repo, fromTag.name, toTag.name);
             }
             catch (error) {
+                console.dir(error);
                 (0, utils_1.failOrError)(`💥 Failed to retrieve - Invalid tag? - Because of: ${error}`, failOnError);
                 return exports.DefaultDiffInfo;
             }
@@ -2302,7 +2303,8 @@ class GithubRepository extends BaseRepository_1.BaseRepository {
         // load octokit instance
         this.octokit = new rest_1.Octokit({
             auth: `token ${this.token}`,
-            baseUrl: this.url
+            baseUrl: this.url,
+            log: console
         });
         if (this.proxy) {
             const agent = new https_proxy_agent_1.HttpsProxyAgent(this.proxy);

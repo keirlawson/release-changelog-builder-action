@@ -79,6 +79,7 @@ export class Commits {
     try {
       diffInfo = await commitsApi.getDiff(owner, repo, fromTag.name, toTag.name)
     } catch (error) {
+      console.dir(error)
       failOrError(`💥 Failed to retrieve - Invalid tag? - Because of: ${error}`, failOnError)
       return DefaultDiffInfo
     }
